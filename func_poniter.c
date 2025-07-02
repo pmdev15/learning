@@ -3,7 +3,9 @@
 int add(int a,int b){
     return a+b;
 }
-
+int sub(int a,int b){
+    return a-b;
+}
 int main(){
 
 
@@ -11,12 +13,20 @@ int main(){
     int (*ptr)(int,int) = &add;
     // or ptr = &add;
     // also ptr = add // because name of the func represents the initial address of the func
-                      // also because you are not using & then no need to dereference the pointer
-                      // i.e no need to use * just result = ptr(a,b);
+           //doesnot work     |    // doubt    // also because you are not using & then no need to dereference the pointer
+           //                 |  // doubt    // i.e no need to use * just result = ptr(a,b);
 
     // using func pointer
-    int result = *ptr(a,b);
+    int result = ptr(a,b);
     printf("%d\n",result);
+
+    // Application of function pointer
+    int (*ptrfunc[4])(int ,int ) = {add,sub};
+    printf("enter 0 for addition and 1 for subs\n");
+    int choice; 
+	printf("enter two number\n");
+    scanf("%d %d %d",&choice,&a,&b); // choice 0 = add , 1 = sub
+    printf("%d\n",ptrfunc[choice](a,b));
 
     return 0;
 }
