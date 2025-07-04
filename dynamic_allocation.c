@@ -12,12 +12,12 @@ int main(){
     int sum=0;
 
     printf("enter no of elements\n");
-    scanf("%d\n ",&num_elements);
+    scanf("%d",&num_elements);
 
     array = (int *)malloc(num_elements * sizeof(int)); // cast malloc as an int pointer 
                                                        // and buffer = num of int  * bytes of one int
     //Fail case
-    if(array=NULL){
+    if(array==NULL){
         printf("Memory Allocation Failed");
         return 1;
     }
