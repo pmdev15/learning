@@ -56,5 +56,7 @@ int main(){
 //
 //void *ptr = calloc(num_elements,size_of_each_elements)
 //
+//realloc() :- takes an existing pointer and makes it to specified size
 //
+//void *ptr = realloc(existing_pointer,new_size_in_bytes);
 //
