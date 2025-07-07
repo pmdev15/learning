@@ -36,9 +36,12 @@ struct node *at_begin(struct node *head,int data){
     struct node *temp = (struct node *)malloc(sizeof(struct node));
     temp->data=data;
     temp->next=head;
-    head=temp;
+    head=temp;		// this does not get reflected as this is local to the func
     return head;    // why do  have to return head // why just head=temp does not work as we are working by pointers
                     // so it should just work by reference
+					// Ans :- when we pass head we are passing the content in head and not head pointer
+					// so the changes in linked list will get reflected in linked list but 
+					// the head pointer will not change
 }
 
 
