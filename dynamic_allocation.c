@@ -43,7 +43,7 @@ int main(){
 // Library :- stdlib.h
 //
 // malloc() :- Memory Allocation
-// calloc() :- Contigous Allocation
+// calloc() :- Clear Allocation
 // realloc() :- Reallocation
 // free() :- Deallocation
 //

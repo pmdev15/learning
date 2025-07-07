@@ -7,6 +7,9 @@ struct node{
 
 };
 
+void no_of_nodes(struct node *head);
+void printNodes(struct node *head);
+
 void newlink(struct node *head,int data){
     struct node *ptr,*temp;
     ptr = head;
@@ -27,6 +30,32 @@ struct node *at_end(struct node *ptr,int data){
     
     ptr->next = temp;
     return temp;
+}
+
+struct node *at_begin(struct node *head,int data){
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=head;
+    head=temp;
+    return head;    // why do  have to return head // why just head=temp does not work as we are working by pointers
+                    // so it should just work by reference
+}
+
+
+int main(){
+    struct node *head=NULL;
+    head = (struct node *)malloc(sizeof(struct node));
+
+    head->data = 30;
+    head->next = NULL;
+    
+    head = at_begin(head,20);
+
+    no_of_nodes(head);
+    printNodes(head);
+
+    free(head);
+    return 0;
 }
 
 void no_of_nodes(struct node *head){
@@ -56,36 +85,6 @@ void printNodes(struct node *head){
     printf("NULL\n");
 
 }
-
-int main(){
-    struct node *head=NULL;
-    head = (struct node *)malloc(sizeof(struct node));
-
-    head->data = 30;
-    head->next = NULL;
-    
-    //newlink(head,40);     // this is useless because after executing the below code it appends next to head
-    //newlink(head,50);     // so this part gets erased  // to use this part first traverse the ptr to end of the node
-    //no_of_nodes(head);
-    //printNodes(head);
-
-    // another way of insertion
-    // in the above way we were traversing till we find the null then inserting
-    // but in this case we make another ptr then always updating the ptr to the end node
-    // so it adds the next node to the end of the previous node
-    
-    struct node *ptr=NULL;
-    ptr = head;
-    ptr = at_end(ptr,60);
-    ptr = at_end(ptr,70);
-
-    no_of_nodes(head);
-    printNodes(head);
-
-    free(head);
-    return 0;
-}
-
 
 
 
