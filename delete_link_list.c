@@ -56,6 +56,40 @@ void del_last_node(struct node *head){
     }
 }
 
+void del_pos(struct node **head,int pos){
+    struct node *current = *head;
+    struct node *previous = *head;
+    if(*head == NULL){
+        printf("List is already empty");
+    }
+    else if(pos==1){
+        *head = current->next;
+        free(current);
+        current = NULL;
+    }
+    else{
+        while(pos!=1){
+            previous = current;
+            current = current->next;
+            pos--;
+        }
+        previous->next = current->next;
+        free(current);
+        current = NULL;
+    }
+}
+
+struct node *del_node(struct node *head){
+	struct node *temp = head;
+	while(temp!=NULL){
+		temp = temp->next;
+		free(head);
+		head = temp;
+	}
+	return head;
+	
+}
+
 int main(){
     struct node *head=NULL;
     head = (struct node *)malloc(sizeof(struct node));
@@ -67,16 +101,18 @@ int main(){
     newlink(head,50);
 
     //head = del_first_node(head);
-    del_last_node(head);
-    printNodes(head);
+    //del_last_node(head);
+    //del_pos(&head,2);
+	head = del_node(head);
 
+    printNodes(head);
     free(head);
     return 0;
 }
 
 void printNodes(struct node *head){
     if(head==NULL){
-        printf("Linked List is Empty");
+        printf("Linked List is Empty\n");
     }
     struct node *ptr;
     ptr = head;
