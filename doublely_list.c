@@ -29,6 +29,21 @@ struct node *at_beg(struct node *head,int data){
 	return head;
 }
 
+struct node *at_end(struct node *head,int data){
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    temp->data = data;
+    temp->prev = NULL;
+    temp->next = NULL;
+    struct node *ptr = NULL;
+    ptr = head;
+    while(ptr->next!=NULL){
+        ptr = ptr->next;
+    }
+    temp->prev = ptr;
+    ptr->next = temp;
+    return head;
+}
+
 void newlink(struct node *head,int data){
 	struct node *temp = NULL,*ptr = NULL;
 	ptr = head;
@@ -51,6 +66,7 @@ int main(){
 	newlink(head,20);
 	newlink(head,30);
 	head = at_beg(head,5);
+    head = at_end(head,40);
 
 	printNodes(head);
 	free(head);
@@ -64,7 +80,7 @@ void printNodes(struct node *head){
     struct node *ptr;
     ptr = head;
     while(ptr!=NULL){
-        printf("%d -> ",ptr->data);
+        printf("%d <=> ",ptr->data);
         ptr = ptr->next;
     }
     printf("NULL\n");
